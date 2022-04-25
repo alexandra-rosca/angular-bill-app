@@ -9,13 +9,16 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './service/user.service';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { LoginService } from './service/login.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     BillComponent,
     UserListComponent,
-    UserFormComponent
+    UserFormComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,7 @@ import { UserService } from './service/user.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService],
+  providers: [UserService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
