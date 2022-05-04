@@ -12,8 +12,8 @@ import { LoginService } from '../service/login.service';
 export class LoginFormComponent {
 
   loginForm!: FormGroup;
-  returnUrl!: string;
-  user!: User;
+  returnUrl: string = '/users';
+  user: User ={};
 
   constructor(
     private route: ActivatedRoute,
@@ -21,9 +21,7 @@ export class LoginFormComponent {
     private formBuilder: FormBuilder,
     private loginService: LoginService) {
 
-    if (this.loginService.currentUserValue) {
-      this.router.navigate(['/']);
-    }
+    
   }
 
   /*ngOnInit(): void {
@@ -39,14 +37,14 @@ export class LoginFormComponent {
   onSubmit() {
 
     // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
-    }
+    
 
     this.loginService.login(this.user.email!, this.user.password!)
       .subscribe(
         data => {
+          
           this.router.navigate([this.returnUrl]);
+          
         });
   }
 

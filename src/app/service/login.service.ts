@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../model/user';
@@ -22,8 +22,10 @@ export class LoginService {
     }
 
     login(email: string, password: string) {
-        return this.http.post<User>('http://localhost:8080/users/login', { email, password })
-            .pipe(map(user => {
+        const headers =new HttpHeaders( {'Access-Control-Allow-Origin':'localhost:8080'});
+        let options={headers:headers}
+        return this.http.post('http://localhost:8080/app/users/login', { email, password},options)
+            .pipe(map((user: any) => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 this.currentUserSubject.next(user);

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BillComponent } from './bill/bill.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserFormComponent } from './user-form/user-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './service/user.service';
 import { LoginFormComponent } from './login-form/login-form.component';
@@ -24,7 +24,8 @@ import { LoginService } from './service/login.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [UserService, LoginService],
   bootstrap: [AppComponent]

@@ -5,9 +5,11 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { UserListComponent } from './user-list/user-list.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginFormComponent},
+  { path: 'registerUser', component: UserFormComponent},
   { path: 'users', component: UserListComponent},
-  { path: 'registerUser', component: UserFormComponent}
+  { path: 'login', component: LoginFormComponent},
+  
+  
 ];
 
 @NgModule({

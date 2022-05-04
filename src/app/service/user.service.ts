@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Type, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
 
@@ -27,6 +28,8 @@ export class UserService {
     const headers = {'content-type' : 'application/json'};
     const body = JSON.stringify(user);
     console.log(body)
-    return this.http.post<User>(this.usersUrl + '/${id}', body, {'headers':headers});
+    return this.http.put<User>(this.usersUrl + '/${id}', body, {'headers':headers});
   }
+
+  //splice
 }
