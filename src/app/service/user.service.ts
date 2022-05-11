@@ -24,11 +24,11 @@ export class UserService {
     return this.http.post<User>(this.usersUrl, body, {'headers':headers});
   }
 
-  public update(id: number, user: User): Observable<User> {
+  public update(id: string, user: User): Observable<any> {
     const headers = {'content-type' : 'application/json'};
     const body = JSON.stringify(user);
     console.log(body)
-    return this.http.put<User>(this.usersUrl + '/${id}', body, {'headers':headers});
+    return this.http.put<any>(`${this.usersUrl}/${id}`, body, {'headers':headers});
   }
 
   //splice

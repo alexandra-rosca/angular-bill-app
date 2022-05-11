@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LoginService {
-
+    userId:string='';
   private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
 
@@ -24,13 +24,16 @@ export class LoginService {
     login(email: string, password: string) {
         const headers =new HttpHeaders( {'Access-Control-Allow-Origin':'localhost:8080'});
         let options={headers:headers}
-        return this.http.post('http://localhost:8080/app/users/login', { email, password},options)
-            .pipe(map((user: any) => {
+        return this.http.post('http://localhost:8080/app/users/login', { email, password }, options)
+            .pipe(map((user: User) => {
+                this.userId = user.id!;
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 this.currentUserSubject.next(user);
+                
                 return user;
             }));
+
     }
 
     logout() {

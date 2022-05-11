@@ -12,7 +12,7 @@ import { LoginService } from '../service/login.service';
 export class LoginFormComponent {
 
   loginForm!: FormGroup;
-  returnUrl: string = '/users';
+  returnUrl: string = '/account';
   user: User ={};
 
   constructor(
@@ -24,20 +24,7 @@ export class LoginFormComponent {
     
   }
 
-  /*ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-  }*/
-
-  onSubmit() {
-
-    // stop here if form is invalid
-    
+  onSubmit() { 
 
     this.loginService.login(this.user.email!, this.user.password!)
       .subscribe(
