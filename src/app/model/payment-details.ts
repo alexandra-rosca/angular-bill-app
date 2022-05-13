@@ -11,4 +11,8 @@ export class PaymentDetails {
         this.cardNumber = cardNumber;
         this.moneySum = moneySum;
     }
+
+    setMoneySum(price: number) {
+        this.moneySum = price;
+    }
 }

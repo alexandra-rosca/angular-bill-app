@@ -20,10 +20,10 @@ export class UserFormComponent {
   }
 
   onSubmit() {
-    this.userService.save(this.user).subscribe(result => this.gotoUserList());
+    this.userService.save(this.user).subscribe(result => this.gotoAccount());
   }
 
-  gotoUserList() {
+  gotoAccount() {
     this.router.navigate(['/account']);
   }
 }

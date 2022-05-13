@@ -18,6 +18,6 @@ export class PaymentService {
     const headers = {'content-type' : 'application/json'};
     const body = JSON.stringify(payment);
     console.log(body)
-    return this.http.post<PaymentDetails>(this.paymentUrl + '/bills/2', body, {'headers':headers});
+    return this.http.post<PaymentDetails>(this.paymentUrl + '/bills', body, {'headers':headers});
   }
 }

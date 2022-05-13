@@ -28,7 +28,7 @@ export class UserService {
     const headers = {'content-type' : 'application/json'};
     const body = JSON.stringify(user);
     console.log(body)
-    return this.http.put<any>(`${this.usersUrl}/${id}`, body, {'headers':headers});
+    return this.http.put<any>(`${this.usersUrl}/1`, body, {'headers':headers});
   }
 
   //splice

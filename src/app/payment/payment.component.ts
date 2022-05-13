@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Bill } from '../model/bill';
 import { PaymentDetails } from '../model/payment-details';
 import { BillService } from '../service/bill.service';
+import { PaymentService } from '../service/payment.service';
 
 @Component({
   selector: 'app-payment',
@@ -11,13 +13,22 @@ import { BillService } from '../service/bill.service';
 })
 export class PaymentComponent implements OnInit {
 
-  payment: PaymentDetails={};
+  payment: PaymentDetails={
+    setMoneySum: function (price: number): void {
+      throw new Error('Function not implemented.');
+    }
+  };
   bills: Bill[] =[];
   summary: number=0;
 
-  constructor(private billService: BillService, private toastr: ToastrService) { }
+  constructor(private billService: BillService, 
+    private toastr: ToastrService,
+    private paymentService: PaymentService, 
+    private route: ActivatedRoute, 
+    private router: Router) { }
 
   ngOnInit(): void {
+    console.log('init', this.payment)
     this.billService.findAll().subscribe(data => {
       this.bills = data;
       
@@ -29,10 +40,15 @@ export class PaymentComponent implements OnInit {
     for(let i = 0; i < this.bills.length; i++) {
       this.summary += this.bills[i].price!;
     }
-    console.log(this.bills[1].price)
+    this.payment.setMoneySum(this.summary)
   }
 
-  showSuccess() { //pun pe buton
+  onSubmit() {
+    console.log(this.payment);
+    this.paymentService.makePayment(this.payment).subscribe(result => this.showSuccess);
+  }
+
+  showSuccess() { 
     this.toastr.success('Payment done!');
   }
 

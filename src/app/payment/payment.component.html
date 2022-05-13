@@ -24,11 +24,10 @@
                         <div class="row">
                             <div class="col-lg-5 mb-lg-0 mb-3">
                                 <p class="h4 mb-0">Summary</p>
-                                <p class="mb-0"><span class="fw-bold">Product:</span><span class="c-green"> Name of
-                                        product</span>
-                                </p>
+                                
                                 <p class="mb-0">
-                                    <span class="fw-bold">Price:</span>
+                                    <!-- <form (ngSubmit)="onSubmit()" #userForm="ngForm"></form> -->
+                                    <span class="fw-bold">Bill's price:</span>
                                     <span class="c-green">{{ summary }}</span>
                                     
                                 </p>
@@ -36,11 +35,11 @@
                                 <p class="mb-0">Thank you for choosing us!</p>
                             </div>
                             <div class="col-lg-7">
-                                <form action="" class="form">
+                                <form  class="form" (ngSubmit)="onSubmit()">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form__div">
-                                                <input type="text" [(ngModel)]="payment.cardNumber" class="form-control" placeholder=" ">
+                                                <input type="text" [(ngModel)]="payment.cardNumber" [ngModelOptions]="{standalone: true}" class="form-control" placeholder=" ">
                                                 <label for="" class="form__label">Card Number</label>
                                             </div>
                                         </div>
@@ -54,19 +53,20 @@
 
                                         <div class="col-6">
                                             <div class="form__div">
-                                                <input type="password" [(ngModel)]="payment.cvvNumber" class="form-control" placeholder=" ">
+                                                <input type="password" [(ngModel)]="payment.cvvNumber" [ngModelOptions]="{standalone: true}" class="form-control" placeholder=" ">
                                                 <label for="" class="form__label">cvv code</label>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form__div">
-                                                <input type="text" [(ngModel)]="payment.cardHolder" class="form-control" placeholder=" ">
+                                                <input type="text" [(ngModel)]="payment.cardHolder" [ngModelOptions]="{standalone: true}" class="form-control" placeholder=" ">
                                                 <label for="" class="form__label">card holder</label>
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <div class="btn btn-primary w-100">Submit</div>
-                                        </div>
+                                    </div><div class="col-12">
+                                        <button type="submit" class="btn btn-primary payment">
+                                            Make Payment
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -75,10 +75,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-12">
-            <div (click)="showSuccess()" class="btn btn-primary payment">
-                Make Payment
-            </div>
-        </div>
+        
     </div>
 </div>
